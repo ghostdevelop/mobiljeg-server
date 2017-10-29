@@ -29,7 +29,7 @@ mongoose.connect(MONGOURL,  options, (err) => {
 const app = express();
 
 app.use(function(req, res, next) {
-  const cors = { origin: ["http://localhost:3001"], default: "*" };
+  const cors = { origin: ["http://localhost:3000"], default: "*" };
   const origin = req.headers.origin;
   const allowedOrigin = cors.origin.indexOf(origin) === -1 ? cors.default : origin;
 

@@ -4,15 +4,15 @@ import moment from 'moment';
 import config from '../config/server';
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true },
+  username: { type: String },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   role: { type: String, default: 'user' },
   phone: { type: String },
   rating: { type: Number },
   contactInfo: {
-    name: { type: String, default: '' },
-    email: { type: String, unique: true },
+    name: { type: String },
+    email: { type: String },
     phone: { type: String },
     company: { type: String },
     city: { type: String },

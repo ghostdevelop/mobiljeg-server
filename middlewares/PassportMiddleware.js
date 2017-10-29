@@ -24,11 +24,12 @@ passport.use('user-local', new Strategy({
             bcrypt.compare(password, user.password, (err, isGood) => {
                 if (err || !isGood) {
 
-                  console.log("check", err)
                     return cb(err || {
                         err: isGood + 'not true'
                     })
                 }
+                user.password = undefined
+
                 return cb(null, user);
             })
         });

@@ -14,7 +14,6 @@ class Account {
 
         let user = new UserDB({
           email: userObj.email,
-          username: userObj.username,
           password: hash
         });
 
@@ -24,6 +23,7 @@ class Account {
           } else {
             req.user = user
             let token = req.user.makeToken();
+            req.user.password = undefined
 
             return res.cookie(`accessToken`, token).send(req.user);
           }
@@ -39,6 +39,12 @@ class Auth {
   static login(req, res) {
     let token = req.user.makeToken();
     return res.cookie(`accessToken`, token).send(req.user);
+  }
+
+  static authenticate(req, res) {
+    let user = req.user;
+
+    return res.status(200).send(user);
   }
 
   static mobileLogin(req, res) {
@@ -83,7 +89,7 @@ class Auth {
     req.logout();
     res.clearCookie(`accessToken`).send('You\'ve successfully logged out!');
   }
-  
+
 }
 
 export { Account, Auth };
