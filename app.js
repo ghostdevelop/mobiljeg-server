@@ -32,7 +32,7 @@ const app = express();
 console.log("config.ORIGIN_URL", config.ORIGIN_URL)
 
 app.use(function(req, res, next) {
-  const cors = { origin: ["http://jegyek.mobiljeg.hu/:3000"], default: config.ORIGIN_URL };
+  const cors = { origin: ["http://jegyek.mobiljeg.hu/:3000"], default: "http://mobiljeg-server.herokuapp.com" };
   const origin = req.headers.origin;
   const allowedOrigin = cors.origin.indexOf(origin) === -1 ? cors.default : origin;
 
