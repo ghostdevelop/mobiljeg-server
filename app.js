@@ -11,6 +11,7 @@ import passport from 'passport';
 
 import PassportMiddleware from './middlewares/PassportMiddleware';
 import indexRoute from './routes/index';
+import config from './config/server';
 
 // Initialize mongoDB connection
 const MONGOURL = process.env.MONGODB_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/sample-server';
@@ -28,8 +29,10 @@ mongoose.connect(MONGOURL,  options, (err) => {
 // Create an express instance
 const app = express();
 
+console.log("config.ORIGIN_URL", config.ORIGIN_URL)
+
 app.use(function(req, res, next) {
-  const cors = { origin: ["http://192.168.0.103:3000"], default: "https://mobiljeg-server.herokuapp.com/" };
+  const cors = { origin: ["http://jegyek.mobiljeg.hu/:3000"], default: config.ORIGIN_URL };
   const origin = req.headers.origin;
   const allowedOrigin = cors.origin.indexOf(origin) === -1 ? cors.default : origin;
 

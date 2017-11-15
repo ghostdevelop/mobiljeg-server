@@ -11,7 +11,8 @@ if(!process.env.JWT_SECRET) {
 const config = {
   PORT: process.env.PORT || 4242,
   JWT_SECRET: process.env.JWT_SECRET,
-  MONGOURL: process.env.MONGODB_URI
+  MONGOURL: process.env.MONGODB_URI,
+  ORIGIN_URL: process.env.ORIGIN_URL
 };
 
 export default config;
