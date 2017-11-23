@@ -14,12 +14,12 @@ router.route('/login')
   .post(passport.authenticate('user-local', { session: false } ), Auth.login);
 
 router.route('/authenticate')
-  .get(AuthMiddleware.authenticated, AuthMiddleware.isAuthorized('user'), Auth.authenticate)
+  .get(AuthMiddleware.authenticated, AuthMiddleware.isAuthorized('user', 'admin'), Auth.authenticate)
 
 router.route('/fb_auth')
   .post(Auth.fbAuth);
 
 router.route('/logout')
-  .delete(Auth.logout);
+  .delete(AuthMiddleware.authenticated, AuthMiddleware.isAuthorized('user', 'admin'), Auth.logout);
 
 export default router;

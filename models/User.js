@@ -9,14 +9,14 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   role: { type: String, default: 'user' },
   phone: { type: String },
-  rating: { type: Number },
   contactInfo: {
     name: { type: String },
     email: { type: String },
     phone: { type: String },
     company: { type: String },
     city: { type: String },
-  }
+  },
+  tickets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket' }],
 }, { timestamps: true });
 
 userSchema.methods.makeToken = function() {
@@ -28,6 +28,11 @@ userSchema.methods.makeToken = function() {
 
   return token;
 };
+
+userSchema.methods.addTicket = function(ticketID, cb){
+  this.tickets.push(ticketID);
+  this.save(cb);
+}
 
 const User = mongoose.model('User', userSchema);
 

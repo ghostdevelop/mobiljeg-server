@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_ENV=development nodemon ./node_modules/.bin/babel-node index",    
+    "dev": "NODE_ENV=development nodemon ./node_modules/.bin/babel-node index",
     "start": "nodemon ./node_modules/.bin/babel-node index"
   },
   "author": "Ghost",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.17.1",
     "babel-cli": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
